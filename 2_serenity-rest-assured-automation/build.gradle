@@ -1,0 +1,45 @@
+group 'io.github.zaz600'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.1.60'
+    ext.serenity_version = '1.8.0'
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "net.serenity-bdd:serenity-gradle-plugin:$serenity_version"
+    }
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+
+    testCompile('junit:junit:4.12')
+    testCompile group: 'net.serenity-bdd', name: 'serenity-core', version: "$serenity_version"
+    testCompile group: 'net.serenity-bdd', name: 'serenity-junit', version: "$serenity_version"
+    testCompile group: 'net.serenity-bdd', name: 'serenity-rest-assured', version: "$serenity_version"
+    testCompile group: 'net.serenity-bdd', name: 'serenity-gradle-plugin', version: "$serenity_version"
+    testCompile('org.assertj:assertj-core:3.8.0')
+    testCompile('org.slf4j:slf4j-simple:1.7.25')
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+// для аггрегации отчета
+gradle.startParameter.continueOnFailure = true

@@ -1,0 +1,1 @@
+Исходный текст к статье "Тестирование RESTful API с помощью Serenity и REST Assured на Kotlin"
